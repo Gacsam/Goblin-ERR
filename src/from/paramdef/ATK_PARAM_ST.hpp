@@ -5,7 +5,7 @@ namespace from {
 namespace paramdef {
 /**
  * @brief This struct was automatically generated from XML paramdefs.
- * 
+ *
  */
 struct ATK_PARAM_ST {
     /**
@@ -1460,7 +1460,24 @@ struct ATK_PARAM_ST {
      */
     unsigned char defSfxMaterialVariationValue{ 0 };
 
-    unsigned char pad4[19];
+    unsigned char pad4[3];
+
+    /**
+     * @brief finalDamageRateId
+     */
+    int finalDamageRateId{ 0 };
+
+    /**
+     * @brief subCategory3
+     */
+    unsigned char subCategory3{ 0 };
+
+    /**
+     * @brief subCategory4
+     */
+    unsigned char subCategory4{ 0 };
+
+    unsigned char pad7[10];
 };
 
 }; // namespace paramdef

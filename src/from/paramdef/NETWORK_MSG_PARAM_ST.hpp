@@ -5,7 +5,7 @@ namespace from {
 namespace paramdef {
 /**
  * @brief This struct was automatically generated from XML paramdefs.
- * 
+ *
  */
 struct NETWORK_MSG_PARAM_ST {
     /**
@@ -220,7 +220,17 @@ struct NETWORK_MSG_PARAM_ST {
      */
     int forceJoinBlack_C_Npc{ -1 };
 
-    unsigned char pad2[28];
+    int unknown_0xa4{ 0 };
+
+    int unknown_0xa8{ 0 };
+
+    int unknown_0xac{ 0 };
+
+    int unknown_0xb0{ 0 };
+
+    int unknown_0xb4{ 0 };
+
+    unsigned char pad2_new[8];
 };
 
 }; // namespace paramdef

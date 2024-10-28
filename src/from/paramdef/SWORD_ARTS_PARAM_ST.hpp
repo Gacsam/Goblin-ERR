@@ -5,7 +5,7 @@ namespace from {
 namespace paramdef {
 /**
  * @brief This struct was automatically generated from XML paramdefs.
- * 
+ *
  */
 struct SWORD_ARTS_PARAM_ST {
     /**
@@ -146,14 +146,9 @@ struct SWORD_ARTS_PARAM_ST {
     short useMagicPoint_R2{ 0 };
 
     /**
-     * @brief Shield type icon (overwrite)
-     *
-     * If you do not overwrite it, the icon will be displayed based on the
-     * swashbuckler ID of the weapon para.
+     * @brief swordArtsTypeNew
      */
-    signed char shieldIconType{ 0 };
-
-    unsigned char pad[1];
+    unsigned short swordArtsTypeNew{ 0 };
 
     /**
      * @brief Icon ID

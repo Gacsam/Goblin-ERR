@@ -5,7 +5,7 @@ namespace from {
 namespace paramdef {
 /**
  * @brief This struct was automatically generated from XML paramdefs.
- * 
+ *
  */
 struct NETWORK_PARAM_ST {
     /**
@@ -174,7 +174,9 @@ struct NETWORK_PARAM_ST {
      */
     float breakInRequestTimeOutSec{ 20.f };
 
-    unsigned char pad_1[4];
+    unsigned char unknown_0x7c{ 0 };
+
+    unsigned char pad_1[3];
 
     /**
      * @brief Key guide horizontal range [m]

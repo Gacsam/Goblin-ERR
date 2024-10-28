@@ -5,7 +5,7 @@ namespace from {
 namespace paramdef {
 /**
  * @brief This struct was automatically generated from XML paramdefs.
- * 
+ *
  */
 struct EQUIP_PARAM_WEAPON_ST {
     /**
@@ -1186,7 +1186,11 @@ struct EQUIP_PARAM_WEAPON_ST {
      */
     bool invisibleOnRemo : 1 { false };
 
-    unsigned char pad2 : 3;
+	unsigned char unknown_0x17c_5: 1 { 0 };
+
+	unsigned char unknown_0x17c_6: 1 { 0 };
+
+	unsigned char unknown_0x17c_7: 1 { 0 };
 
     /**
      * @brief Correction type (magic attack power)
@@ -1873,7 +1877,12 @@ struct EQUIP_PARAM_WEAPON_ST {
      */
     float vsPlayerDmgCorrectRate_Curse{ 1.f };
 
-    unsigned char pad[8];
+    /**
+     * @brief restrictSpecialSwordArt
+     */
+    unsigned char restrictSpecialSwordArt{ 0 };
+
+    unsigned char pad[7];
 };
 
 }; // namespace paramdef

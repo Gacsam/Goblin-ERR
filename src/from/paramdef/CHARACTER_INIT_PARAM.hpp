@@ -149,7 +149,11 @@ struct CHARACTER_INIT_PARAM {
      */
     int equip_Accessory04{ -1 };
 
-    unsigned char pad8[4];
+	unsigned char unknown_0x50 { 0 };
+
+	unsigned char unknown_0x51 { 0 };
+
+	unsigned char pad8[2];
 
     /**
      * @brief Material ID1 for Elixir

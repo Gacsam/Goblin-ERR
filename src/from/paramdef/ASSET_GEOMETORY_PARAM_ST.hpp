@@ -5,7 +5,7 @@ namespace from {
 namespace paramdef {
 /**
  * @brief This struct was automatically generated from XML paramdefs.
- * 
+ *
  */
 struct ASSET_GEOMETORY_PARAM_ST {
     /**
@@ -216,8 +216,6 @@ struct ASSET_GEOMETORY_PARAM_ST {
      * Do you play the attack (0: do not play, 1: play)
      */
     bool isAttackBacklash : 1 { true };
-
-    unsigned char Reserve_2 : 1;
 
     /**
      * @brief Is it a ladder?
@@ -899,7 +897,19 @@ struct ASSET_GEOMETORY_PARAM_ST {
      */
     unsigned char excludeActivateRatio_PS4_Legacy{ 0 };
 
-    unsigned char Reserve_0[32];
+    unsigned char unknown_0x120{ 0 };
+
+    unsigned char unknown_0x121{ 0 };
+
+    unsigned char unknown_0x122{ 0 };
+
+    unsigned char unknown_0x123{ 0 };
+
+    unsigned char unknown_0x124{ 0 };
+
+    unsigned char unknown_0x125{ 0 };
+
+    unsigned char Reserve_0[26];
 };
 
 }; // namespace paramdef

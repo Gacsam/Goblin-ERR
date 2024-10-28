@@ -5,7 +5,7 @@ namespace from {
 namespace paramdef {
 /**
  * @brief This struct was automatically generated from XML paramdefs.
- * 
+ *
  */
 struct PLAYER_COMMON_PARAM_ST {
     /**
@@ -374,7 +374,19 @@ struct PLAYER_COMMON_PARAM_ST {
      */
     int resistCurseItemLotParamId_map{ -1 };
 
-    unsigned char reserved41[52];
+    int unknown_0xcc{ 0 };
+
+    int unknown_0xd0{ 0 };
+
+    int unknown_0xd4{ 0 };
+
+    int unknown_0xd8{ 0 };
+
+    int unknown_0xdc{ 0 };
+
+    int unknown_0xe0{ 0 };
+
+    unsigned char reserved41[28];
 };
 
 }; // namespace paramdef

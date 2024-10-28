@@ -5,7 +5,7 @@ namespace from {
 namespace paramdef {
 /**
  * @brief This struct was automatically generated from XML paramdefs.
- * 
+ *
  */
 struct WEP_ABSORP_POS_PARAM_ST {
     /**
@@ -448,7 +448,15 @@ struct WEP_ABSORP_POS_PARAM_ST {
      */
     unsigned char dispPosType_leftHang_3{ 0 };
 
-    unsigned char reserve[12];
+    signed char unknown_0x54{ 0 };
+
+    signed char unknown_0x55{ 0 };
+
+    signed char unknown_0x56{ 0 };
+
+    signed char unknown_0x57{ 0 };
+
+    unsigned char reserve[8];
 };
 
 }; // namespace paramdef

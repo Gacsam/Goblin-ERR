@@ -265,9 +265,11 @@ struct PLAY_REGION_PARAM_ST {
      */
     bool isAutoIntrudePoint : 1 { false };
 
-    unsigned char pad1 : 7;
+	unsigned char unknown_0x45_1: 1 { 0 };
 
-    unsigned char pad2[2];
+	unsigned char pad1: 6;
+
+	unsigned char pad2[2];
 
     /**
      * @brief Yellow robe's old man host restriction event flag

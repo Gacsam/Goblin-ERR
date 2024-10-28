@@ -5,7 +5,7 @@ namespace from {
 namespace paramdef {
 /**
  * @brief This struct was automatically generated from XML paramdefs.
- * 
+ *
  */
 struct NPC_PARAM_ST {
     /**
@@ -1654,7 +1654,7 @@ struct NPC_PARAM_ST {
      */
     signed char freezeGuardResist{ 0 };
 
-    unsigned char pad1[1];
+    unsigned char unknown_0x1e3{ 0 };
 
     /**
      * @brief Lock camera parameter ID
@@ -1996,7 +1996,10 @@ struct NPC_PARAM_ST {
      */
     unsigned char chrNavimeshFlag_Dead{ 0 };
 
-    unsigned char pad7[1];
+    /**
+     * @brief isConsideredUndead
+     */
+    bool isConsideredUndead{ false };
 
     /**
      * @brief Wheel control type
@@ -2205,7 +2208,12 @@ struct NPC_PARAM_ST {
      */
     float lockScoreOffset{ 0.f };
 
-    unsigned char pad12[8];
+    /**
+     * @brief dlcGameClearSpEffectID
+     */
+    int dlcGameClearSpEffectID{ 0 };
+
+    unsigned char pad12[4];
 };
 
 }; // namespace paramdef

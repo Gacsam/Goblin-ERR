@@ -5,7 +5,7 @@ namespace from {
 namespace paramdef {
 /**
  * @brief This struct was automatically generated from XML paramdefs.
- * 
+ *
  */
 struct EQUIP_PARAM_GOODS_ST {
     /**
@@ -183,7 +183,7 @@ struct EQUIP_PARAM_GOODS_ST {
     */
     unsigned char spEffectCategory{ 0 };
 
-    unsigned char pad3[1];
+    unsigned char unknown_0x40{ 0 };
 
     /**
      * @brief Animation when using tools
@@ -571,7 +571,11 @@ struct EQUIP_PARAM_GOODS_ST {
      */
     bool isUseNoAttackRegion : 1 { true };
 
-    unsigned char pad1 : 7;
+    unsigned char unknown_0x73_1 : 1 { 0 };
+
+    unsigned char unknown_0x73_2 : 1 { 0 };
+
+    unsigned char pad1 : 5;
 
     /**
      * @brief Selling price
