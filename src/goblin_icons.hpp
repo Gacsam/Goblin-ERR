@@ -16,8 +16,9 @@ namespace goblin
 	namespace map {
 		void Initialise();
 		namespace errNative {
-			void SetupReforgedIcon(int rowId, from::paramdef::WORLD_MAP_POINT_PARAM_ST& row, bool isOverworld);
-			void HideOnCompletion(auto& bossNameFlag, auto& defeatedFlag, auto& defeatText);
+			void SetupReforgedIcon(int rowId, from::paramdef::WORLD_MAP_POINT_PARAM_ST& row);
+			void HideOnCompletion(from::paramdef::WORLD_MAP_POINT_PARAM_ST& row);
+			void HideOnCompletion(from::paramdef::BONFIRE_WARP_PARAM_ST& row);
 		}
 	}
 };

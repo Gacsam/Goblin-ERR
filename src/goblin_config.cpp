@@ -50,9 +50,6 @@ void goblin::load_config(const std::filesystem::path& ini_path)
             config::hideCampsOnCompletion = config["hide_camps_on_completion"] != "false";
         spdlog::info("hide_camps_on_completion = {}", config::hideCampsOnCompletion);
 
-        if (config.has("hide_overworld_on_completion"))
-            config::hideOverworldOnCompletion = config["hide_overworld_on_completion"] != "false";
-        spdlog::info("hide_overworld_on_completion = {}", config::hideOverworldOnCompletion);
 
         if (config.has("redify_boss_icons"))
             config::redifyBossIcons = config["redify_boss_icons"] != "false";

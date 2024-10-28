@@ -12,4 +12,5 @@ static std::unordered_map<int, int> ExceptionList = {
 	{30120100, LakeOfRot}, // Lake of Rot - Baleful Shadow
 	{30120101, LakeOfRot}, // Lake of Rot - Dragonkin
 	{30120103, LakeOfRot}, // Lake of Rot - Tree Spirit
+	{38474500, GravesitePlain}, // Black Knight Garrew
 };
