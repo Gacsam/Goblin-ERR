@@ -52,7 +52,6 @@ set_target_properties(steamapi PROPERTIES
 
 add_library( GoblinERR SHARED
   src/from/talk_commands.hpp
-  src/from/param_lookup.hpp
   src/from/messages.hpp
   src/from/game_data.hpp
   src/from/ezstate.hpp
@@ -60,14 +59,15 @@ add_library( GoblinERR SHARED
   src/from/params.cpp
   src/modutils.hpp
   src/modutils.cpp
-  src/goblin_config.hpp
-  src/goblin_config.cpp
+  src/goblin/goblin_map_flags.hpp
+  src/goblin/goblin_map_tiles.hpp
+  src/goblin/goblin_map_exceptions.hpp
   src/goblin_map_lookup.hpp
   src/goblin_map_lookup.cpp
-  src/goblin_map_exceptions.hpp
-  src/goblin_map_exceptions.cpp
-  src/goblin_icons.hpp
-  src/goblin_icons.cpp
+  src/goblin_config.hpp
+  src/goblin_config.cpp
+  src/goblin_main.hpp
+  src/goblin_main.cpp
   src/dllmain.cpp)
 
 set_target_properties(GoblinERR PROPERTIES OUTPUT_NAME "GoblinERR")
@@ -77,7 +77,7 @@ add_definitions(-DPROJECT_VERSION="${CMAKE_PROJECT_VERSION}")
 add_custom_command(TARGET  GoblinERR POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy -t $<TARGET_FILE_DIR:GoblinERR>
   ${CMAKE_SOURCE_DIR}/LICENSE.txt
-  ${CMAKE_SOURCE_DIR}/GoblinERR.ini
+  ${CMAKE_SOURCE_DIR}/GoblinERR_new.ini
   COMMAND_EXPAND_LISTS)
 
 target_link_libraries( GoblinERR

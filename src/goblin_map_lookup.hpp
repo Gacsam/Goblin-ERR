@@ -1,16 +1,23 @@
 #pragma once
-#include "goblin_flag_lookup.hpp"
-namespace goblin::map {
-	bool IsFlagException(int paramId, int& mapFragment);
-}
+#include "from/params.hpp"
 
-using namespace goblin::flag;
-static std::unordered_map<int, int> ExceptionList = {
-	{31443400, WestLimgrave}, // Bridge of Sacrifice - Tree Sentinel
-	{35505701, Snowfields}, // Snowfield - Putrid Avatar
-	{35505600, Snowfields}, // Snowfield - Great Wyrm Theodorix
-	{30120100, LakeOfRot}, // Lake of Rot - Baleful Shadow
-	{30120101, LakeOfRot}, // Lake of Rot - Dragonkin
-	{30120103, LakeOfRot}, // Lake of Rot - Tree Spirit
-	{38474500, GravesitePlain}, // Black Knight Garrew
+#include "from/paramdef/WORLD_MAP_POINT_PARAM_ST.hpp"
+#include "from/paramdef/BONFIRE_WARP_PARAM_ST.hpp"
+
+#include "goblin/goblin_map_exceptions.hpp"
+#include "goblin/goblin_map_tiles.hpp"
+
+
+namespace goblin::mapPoint {
+	bool HasException(int paramId, int& mapFragment);
+	int GetMapFlagFromTile(MapTile mapTile);
+	/// <summary>
+	/// TextId 0 are ignored
+	/// </summary>
+	/// <param name="row">A single row from WORLD_MAP_POINT_PARAM_ST</param>
+	/// <param name="offset">At which textId to start</param>
+	/// <returns>Whether row contains these TextIds</returns>
+	bool ContainsTextId(from::paramdef::WORLD_MAP_POINT_PARAM_ST& row, int offset, int firstTextId, int secondTextId, int thirdTextId);
+	// Same but for graces
+	bool ContainsTextId(from::paramdef::BONFIRE_WARP_PARAM_ST& row, int offset, int firstTextId, int secondTextId, int thirdTextId);
 };
