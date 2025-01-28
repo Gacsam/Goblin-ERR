@@ -1,7 +1,8 @@
-#include "goblin_config.hpp"
+﻿#include "goblin_config.hpp"
 #include <spdlog/spdlog.h>
 
 bool goblin::config::disableGoblin = false;
+long long goblin::config::loadDelay = 10;
 bool goblin::config::requireMapFragments = true;
 
 bool goblin::config::showBossIcons = true;
@@ -72,6 +73,7 @@ void goblin::load_config(const std::filesystem::path& ini_path)
         auto& config = ini["Goblin"];
 
         load_line(config, "disable_goblin", config::disableGoblin);
+        load_line(config, "load_delay", config::loadDelay);
         load_line(config, "require_map_fragments", config::requireMapFragments);
 
         load_line(config, "show_boss_icons", config::showBossIcons);
@@ -99,17 +101,22 @@ void goblin::load_config(const std::filesystem::path& ini_path)
         // Vanilla Goblin
         load_line(config, "show_goblin_graces", config::showGoblinGraces);
         load_line(config, "show_goblin_spirit_springs", config::showGoblinSpiritSprings);
-        load_line(config, "show_goblin_summoning_pools", config::showGoblinGraces);
-        load_line(config, "show_goblin_unique_drops", config::showGoblinSummoningPools);
-        load_line(config, "show_goblin_hostile_npc", config::showGoblinUniqueDrops);
+        load_line(config, "show_goblin_summoning_pools", config::showGoblinSummoningPools);
+        load_line(config, "show_goblin_unique_drops", config::showGoblinUniqueDrops);
+        load_line(config, "show_goblin_hostile_npc", config::showGoblinHostileNPC);
         load_line(config, "show_goblin_imp_statues", config::showGoblinImpStatues);
         load_line(config, "show_goblin_teardrop_scarabs", config::showGoblinTeardropScarabs);
         load_line(config, "show_goblin_non_respawning_materials", config::showGoblinNonRespawningMaterials);
         load_line(config, "show_goblin_key_and_unique", config::showGoblinKeyAndUnique);
+        load_line(config, "show_goblin_prayerbooks", config::showGoblinPrayerbooks);
         load_line(config, "show_goblin_cookbooks", config::showGoblinCookbooks);
+        load_line(config, "show_goblin_memory_stones", config::showGoblinMemoryStones);
+        load_line(config, "show_goblin_crystal_tears", config::showGoblinCrystalTears);
         load_line(config, "show_goblin_pots_and_perfumes", config::showGoblinPotsAndPerfumes);
         load_line(config, "show_goblin_lost_ashes_of_war", config::showGoblinLostAshesOfWar);
         load_line(config, "show_goblin_larval_tears", config::showGoblinLarvalTears);
+        load_line(config, "show_goblin_celestial_dew", config::showGoblinCelestialDew);
+        load_line(config, "show_goblin_stonesword_keys", config::showGoblinStoneswordKeys);
         load_line(config, "show_goblin_paintings", config::showGoblinPaintings);
         load_line(config, "show_goblin_character_upgrades", config::showGoblinPlayerUpgrades);
         load_line(config, "show_goblin_smithing_stones", config::showGoblinSmithingStones);
@@ -124,6 +131,7 @@ void goblin::load_config(const std::filesystem::path& ini_path)
         load_line(config, "show_goblin_consumables", config::showGoblinConsumables);
         load_line(config, "show_goblin_crafting_materials", config::showGoblinCraftingMaterials);
         load_line(config, "show_goblin_multiplayer_items", config::showGoblinMultiplayerItems);
+
     }
 }
 
@@ -132,4 +140,11 @@ void goblin::load_line(mINI::INIMap<std::string> config, std::string lineInIni, 
         boolVariable = config[lineInIni] != "false";
     spdlog::info("Loaded: " + lineInIni);
     spdlog::info("Loaded value = {}", boolVariable);
+}
+
+void goblin::load_line(mINI::INIMap<std::string> config, std::string lineInIni, long long& intVariable) {
+    if (config.has(lineInIni))
+        intVariable = std::stoll(config[lineInIni]);
+    spdlog::info("Loaded: " + lineInIni);
+    spdlog::info("Loaded value = {}", intVariable);
 }

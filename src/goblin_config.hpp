@@ -9,11 +9,13 @@ namespace goblin
 	 * Load user preferences from an .ini file
 	 */
 	void load_line(mINI::INIMap<std::string> config, std::string lineInIni, bool &lineVariable);
+	void load_line(mINI::INIMap<std::string> config, std::string lineInIni, long long& floatVariable);
 	void load_config(const std::filesystem::path& ini_path);
 
 	namespace config
 	{
 		extern bool disableGoblin;
+		extern long long loadDelay;
 		extern bool requireMapFragments;
 
 		extern bool showBossIcons;
