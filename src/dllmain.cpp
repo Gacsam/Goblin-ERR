@@ -40,9 +40,9 @@ static void setup_mod()
 {
     modutils::initialize();
     from::params::initialize();
-
-    spdlog::info("Sleeping an extra 10s to work potential compatibility issues...");
-    std::this_thread::sleep_for(std::chrono::seconds(10));
+    std::string delayInfo = "Sleeping an extra " + std::to_string(goblin::config::loadDelay) + " to work potential compatibility issues...";
+    spdlog::info(delayInfo);
+    std::this_thread::sleep_for(std::chrono::seconds(goblin::config::loadDelay));
 
     if (goblin::config::disableGoblin)
     {
