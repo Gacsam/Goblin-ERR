@@ -186,7 +186,6 @@ void goblin::mapPoint::Initialise() {
             else
                 row.eventFlagId = goblin::flag::AlwaysOff;
         }
-
         else if (goblin::icons::baseGoblin::baseGame::cookbooks.IsInRange(id) || goblin::icons::baseGoblin::DLC::cookbooks.IsInRange(id)) {
             if (goblin::config::showGoblinCookbooks) {
                 row.eventFlagId = GetMapFragment(id, row);
@@ -293,13 +292,6 @@ void goblin::mapPoint::Initialise() {
             }
             else
                 row.eventFlagId = goblin::flag::AlwaysOff;
-
-#ifdef _DEBUG
-            spdlog::info("eventFlagId = {}", row.eventFlagId);
-            spdlog::info("textEnableFlagId1 = {}", row.textEnableFlagId1);
-            spdlog::info("textDisableFlagId1 = {}", row.textDisableFlagId1);
-            spdlog::info("textEnableFlag2Id1 = {}", row.textEnableFlag2Id1);
-#endif // DEBUG
         }
         else if (goblin::icons::baseGoblin::DLC::smithingStones.IsInRange(id)) {
             if (goblin::config::showGoblinSmithingStones) {
@@ -362,6 +354,12 @@ void goblin::mapPoint::Initialise() {
             }
             else
                 row.eventFlagId = goblin::flag::AlwaysOff;
+#ifdef _DEBUG
+            spdlog::info("eventFlagId = {}", row.eventFlagId);
+            spdlog::info("textEnableFlagId1 = {}", row.textEnableFlagId1);
+            spdlog::info("textDisableFlagId1 = {}", row.textDisableFlagId1);
+            spdlog::info("textEnableFlag2Id1 = {}", row.textEnableFlag2Id1);
+#endif // DEBUG
         }
         else if (goblin::icons::baseGoblin::baseGame::ashesOfWar.IsInRange(id) || goblin::icons::baseGoblin::DLC::ashesOfWar.IsInRange(id)) {
             if (goblin::config::showGoblinAshesOfWar) {

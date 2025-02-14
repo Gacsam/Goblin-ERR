@@ -106,7 +106,9 @@ static void setup_mod()
     goblin::mapPoint::Initialise();
 
     modutils::enable_hooks();
-    spdlog::info("Initialized mod");
+    spdlog::info("Mod init complete");
+
+
 }
 
 bool WINAPI DllMain(HINSTANCE dll_instance, unsigned int fdw_reason, void *lpv_reserved)
@@ -129,11 +131,16 @@ bool WINAPI DllMain(HINSTANCE dll_instance, unsigned int fdw_reason, void *lpv_r
             try
             {
                 setup_mod();
+
+                modutils::deinitialize();
+                spdlog::info("Deinitialized mod");
+                spdlog::shutdown();
             }
             catch (std::runtime_error const &e)
             {
                 spdlog::error("Error initializing mod: {}", e.what());
                 modutils::deinitialize();
+                spdlog::shutdown();
             }
         });
     }
