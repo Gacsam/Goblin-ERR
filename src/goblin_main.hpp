@@ -106,9 +106,12 @@ namespace goblin
 		namespace errNative {
 			static void SetupMerchantIcon(int rowId, from::paramdef::WORLD_MAP_POINT_PARAM_ST& row);
 			static void SetupReforgedIcon(int rowId, from::paramdef::WORLD_MAP_POINT_PARAM_ST& row);
+			void SetupDungeonIcon(int rowId, from::paramdef::WORLD_MAP_POINT_PARAM_ST& row);
 			static void HideOnCompletion(from::paramdef::WORLD_MAP_POINT_PARAM_ST& row);
 			static void HideOnCompletion(from::paramdef::BONFIRE_WARP_PARAM_ST& row);
 		};
 		static int GetMapFragment(int rowId, from::paramdef::WORLD_MAP_POINT_PARAM_ST& row);
+		static void SetPrimaryFlags(from::paramdef::WORLD_MAP_POINT_PARAM_ST& row, int flagId);
+		static void SetSecondaryFlags(from::paramdef::WORLD_MAP_POINT_PARAM_ST& row, int flagId);
 	};
 };

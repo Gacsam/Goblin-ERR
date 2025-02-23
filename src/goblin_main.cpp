@@ -23,19 +23,27 @@ void goblin::mapPoint::Initialise() {
         // base ER dungeon and overworld icons
         if (goblin::icons::base::dungeonIcons.IsInRange(id) || goblin::icons::base::overworldLocations.IsInRange(id)) {
             // Skip the row if its texts are not "Location name"  (skipped), "Boss Name" (skipped), "Encountered", "Resurrected" and "Defeated"
-            if (goblin::mapPoint::ContainsTextId(row, 2, 5100, 5110, 5120) || goblin::mapPoint::ContainsTextId(row, 2, 5300, 5310, 5320)) {
+            if (row.textId3 == 5100 || row.textId3 == 5300) {
                 if (config::showOverworldIcons)
-                    goblin::mapPoint::errNative::SetupReforgedIcon(id, row);
+                    goblin::mapPoint::errNative::SetupDungeonIcon(id, row);
 
                 // Hide the boss names from dungeons and locations
                 if (goblin::config::hideBossesOnCompletion)
                     goblin::mapPoint::errNative::HideOnCompletion(row);
             }
+#ifdef _DEBUG
+            spdlog::info("eventFlagId = {}", row.eventFlagId);
+            spdlog::info("textEnableFlagId1 = {}", row.textEnableFlagId1);
+            spdlog::info("textEnableFlagId2 = {}", row.textEnableFlagId2);
+            spdlog::info("textEnableFlagId3 = {}", row.textEnableFlagId3);
+            spdlog::info("textDisableFlagId1 = {}", row.textDisableFlagId1);
+            spdlog::info("textEnableFlag2Id1 = {}", row.textEnableFlag2Id1);
+#endif // DEBUG
         }
         // Boss icons enabled and overworld range
         else if (goblin::icons::reforged::bossIcons.IsInRange(id)) {
             // Skip the row if its texts are not "Boss Name" (skipped), "Encountered", "Resurrected" and "Defeated"
-            if (goblin::mapPoint::ContainsTextId(row, 1, 5100, 5110, 5120)) {
+            if (row.textId2 == 5100) {
                 if (config::showBossIcons)
                     goblin::mapPoint::errNative::SetupReforgedIcon(id, row);
                 // Hide the boss icons on completion
@@ -52,7 +60,7 @@ void goblin::mapPoint::Initialise() {
         // Camp icons enabled and within range
         else if (goblin::icons::reforged::campIcons.IsInRange(id)) {
             // Skip the row if its texts are not "Camp Name" (skipped), "Discovered" and "Completed", 0 is also skipped
-            if (goblin::mapPoint::ContainsTextId(row, 1, 5000, 0, 5020)) {
+            if (row.textId2 == 5000) {
                 if (config::showCampIcons)
                     goblin::mapPoint::errNative::SetupReforgedIcon(id, row);
 
@@ -354,12 +362,6 @@ void goblin::mapPoint::Initialise() {
             }
             else
                 row.eventFlagId = goblin::flag::AlwaysOff;
-#ifdef _DEBUG
-            spdlog::info("eventFlagId = {}", row.eventFlagId);
-            spdlog::info("textEnableFlagId1 = {}", row.textEnableFlagId1);
-            spdlog::info("textDisableFlagId1 = {}", row.textDisableFlagId1);
-            spdlog::info("textEnableFlag2Id1 = {}", row.textEnableFlag2Id1);
-#endif // DEBUG
         }
         else if (goblin::icons::baseGoblin::baseGame::ashesOfWar.IsInRange(id) || goblin::icons::baseGoblin::DLC::ashesOfWar.IsInRange(id)) {
             if (goblin::config::showGoblinAshesOfWar) {
@@ -635,17 +637,10 @@ void goblin::mapPoint::errNative::SetupMerchantIcon(int rowId, from::paramdef::W
 void goblin::mapPoint::errNative::SetupReforgedIcon(int rowId, from::paramdef::WORLD_MAP_POINT_PARAM_ST& row) {
     auto eventFlag = &row.eventFlagId;
     auto showNameFlag = &row.textEnableFlagId1;
-    auto showEncounteredFlag = &row.textEnableFlagId2;
-    // textId5 checks for clear flag, cause then textId1 is dungeon name
-    if (row.textId5 == 5020 || row.textId5 == 5120 || row.textId5 == 5220 || row.textId5 == 5320) {
-        showNameFlag = &row.textEnableFlagId2;
-        showEncounteredFlag = &row.textEnableFlagId3;
-    }
-    else {
-        // Show "Encountered" only when encountered
-        // In case of dungeons, they already have those flags
-        *showEncounteredFlag = *eventFlag;
-    }
+    auto showEncounteredFlag = &row.textEnableFlagId2;  
+
+    // Show "Encountered" only when encountered
+    *showEncounteredFlag = *eventFlag;
     // Name always visible
     *showNameFlag = goblin::flag::AlwaysOn;
 
@@ -656,8 +651,22 @@ void goblin::mapPoint::errNative::SetupReforgedIcon(int rowId, from::paramdef::W
     if (!config::requireMapFragments) {
         requiredMapFragment = goblin::flag::AlwaysOn;
     }
-
     *eventFlag = requiredMapFragment;
+}
+
+void goblin::mapPoint::errNative::SetupDungeonIcon(int rowId, from::paramdef::WORLD_MAP_POINT_PARAM_ST& row) {
+    row.eventFlagId = 0;
+    auto showLocationFlag = &row.textEnableFlagId1;
+    auto showNameFlag = &row.textEnableFlagId2;
+
+    if (config::requireMapFragments) {
+        // Get required map fragment
+        int mapFragment = GetMapFragment(rowId, row);
+        *showLocationFlag = mapFragment;
+        *showNameFlag = mapFragment;
+    }
+        // Name always visible
+    else *showNameFlag = goblin::flag::AlwaysOn;
 }
 
 /// <summary>
@@ -726,4 +735,26 @@ static int goblin::mapPoint::GetMapFragment(int rowId, from::paramdef::WORLD_MAP
     }else if(requiredMapFragment == goblin::flag::StoryCharmBroken){}
     else if(requiredMapFragment == goblin::flag::StorySealingTreeBurnt){}
     return requiredMapFragment;
+}
+
+static void goblin::mapPoint::SetPrimaryFlags(from::paramdef::WORLD_MAP_POINT_PARAM_ST& row, int flagId) {
+            row.textEnableFlagId1 = flagId;
+            row.textEnableFlagId2 = flagId;
+            row.textEnableFlagId3 = flagId;
+            row.textEnableFlagId4 = flagId;
+            row.textEnableFlagId5 = flagId;
+            row.textEnableFlagId6 = flagId;
+            row.textEnableFlagId7 = flagId;
+            row.textEnableFlagId8 = flagId;
+}
+
+static void goblin::mapPoint::SetSecondaryFlags(from::paramdef::WORLD_MAP_POINT_PARAM_ST& row, int flagId) {
+    row.textEnableFlag2Id1 = flagId;
+    row.textEnableFlag2Id2 = flagId;
+    row.textEnableFlag2Id3 = flagId;
+    row.textEnableFlag2Id4 = flagId;
+    row.textEnableFlag2Id5 = flagId;
+    row.textEnableFlag2Id6 = flagId;
+    row.textEnableFlag2Id7 = flagId;
+    row.textEnableFlag2Id8 = flagId;
 }

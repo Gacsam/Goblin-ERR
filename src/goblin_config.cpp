@@ -5,7 +5,7 @@ bool goblin::config::disableGoblin = false;
 long long goblin::config::loadDelay = 10;
 bool goblin::config::requireMapFragments = true;
 
-bool goblin::config::showBossIcons = true;
+bool goblin::config::showBossIcons = false;
 bool goblin::config::showCampIcons = true;
 bool goblin::config::showOverworldIcons = true;
 bool goblin::config::showMerchants = true;
